@@ -10,7 +10,9 @@ import io.github.thebusybiscuit.slimefun4.api.blocks.BlockLocation;
 import io.github.thebusybiscuit.slimefun4.api.blocks.SlimefunBlock;
 import io.github.thebusybiscuit.slimefun4.api.chunks.ChunkLocation;
 import io.github.thebusybiscuit.slimefun4.api.chunks.SlimefunChunk;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.SlimefunPlugin;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 
 public class SlimefunWorld {
 	
@@ -36,6 +38,18 @@ public class SlimefunWorld {
 		SlimefunBlock block = new SlimefunBlock(l, id);
 		blocks.put(l, block);
 		return block;
+	}
+	
+	public boolean isItem(BlockLocation l, String id) {
+		return getBlockAt(l).filter(b -> b.isItem(id)).isPresent();
+	}
+	
+	public boolean isItem(BlockLocation l, SlimefunItem item) {
+		return getBlockAt(l).filter(b -> b.isItem(item)).isPresent();
+	}
+	
+	public boolean isItem(BlockLocation l, SlimefunItemStack item) {
+		return getBlockAt(l).filter(b -> b.isItem(item)).isPresent();
 	}
 	
 	public void move(SlimefunBlock b, BlockLocation newLocation) {
