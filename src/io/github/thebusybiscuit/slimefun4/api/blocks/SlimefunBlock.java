@@ -107,7 +107,7 @@ public class SlimefunBlock {
 		data.add(key, json);
 	}
 	
-	public void setINtArray(String key, int[] array) {
+	public void setIntArray(String key, int[] array) {
 		JsonArray json = new JsonArray();
 		for (int value: array) json.add(value);
 		data.add(key, json);
@@ -129,17 +129,29 @@ public class SlimefunBlock {
 	public Optional<String> getString(String key) {
 		return getPrimitive(key, json -> json.getAsString());
 	}
+	public String getString(String key, String defaultValue) {
+		return getString(key).orElse(defaultValue);
+	}
 	
 	public Optional<Integer> getInt(String key) {
 		return getPrimitive(key, json -> (int) json.getAsNumber());
+	}
+	public int getInt(String key, int defaultValue) {
+		return getInt(key).orElse(defaultValue);
 	}
 	
 	public Optional<Boolean> getBoolean(String key) {
 		return getPrimitive(key, json -> json.getAsBoolean());
 	}
+	public Boolean getBoolean(String key, boolean defaultValue) {
+		return getBoolean(key).orElse(defaultValue);
+	}
 	
 	public Optional<Float> getFloat(String key) {
 		return getPrimitive(key, json -> (float) json.getAsNumber());
+	}
+	public float getFloat(String key, float defaultValue) {
+		return getFloat(key).orElse(defaultValue);
 	}
 	
 	public Optional<String[]> getStringArray(String key) {
