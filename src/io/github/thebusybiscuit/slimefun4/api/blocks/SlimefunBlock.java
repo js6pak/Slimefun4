@@ -22,7 +22,7 @@ public class SlimefunBlock {
 	private boolean dirty = false;
 	
 	private OptionalMap<String, Object> cache;
-	private Optional<DirtyChestMenu> inventory;
+	private Optional<DirtyChestMenu> inventory = Optional.empty();
 	
 	public SlimefunBlock(BlockLocation l, String id) {
 		this(l, id, new JsonObject());
