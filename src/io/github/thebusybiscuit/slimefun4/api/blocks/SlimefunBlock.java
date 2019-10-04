@@ -127,47 +127,47 @@ public class SlimefunBlock {
 
 	// Getters
 	public Optional<String> getString(String key) {
-		return getPrimitive(key, json -> json.getAsString());
+		return getPrimitive(key, JsonElement::getAsString);
 	}
 	public String getString(String key, String defaultValue) {
 		return getString(key).orElse(defaultValue);
 	}
 	
 	public Optional<Integer> getInt(String key) {
-		return getPrimitive(key, json -> (int) json.getAsNumber());
+		return getPrimitive(key, JsonElement::getAsInt);
 	}
 	public int getInt(String key, int defaultValue) {
 		return getInt(key).orElse(defaultValue);
 	}
 	
 	public Optional<Boolean> getBoolean(String key) {
-		return getPrimitive(key, json -> json.getAsBoolean());
+		return getPrimitive(key, JsonElement::getAsBoolean);
 	}
 	public boolean getBoolean(String key, boolean defaultValue) {
 		return getBoolean(key).orElse(defaultValue);
 	}
 	
 	public Optional<Float> getFloat(String key) {
-		return getPrimitive(key, json -> (float) json.getAsNumber());
+		return getPrimitive(key, JsonElement::getAsFloat);
 	}
 	public float getFloat(String key, float defaultValue) {
 		return getFloat(key).orElse(defaultValue);
 	}
 	
 	public Optional<String[]> getStringArray(String key) {
-		return getArray(key, String[]::new, json -> json.getAsString());
+		return getArray(key, String[]::new, JsonElement::getAsString);
 	}
 	
 	public Optional<Integer[]> getIntArray(String key) {
-		return getArray(key, Integer[]::new, json -> (int) json.getAsNumber());
+		return getArray(key, Integer[]::new, JsonElement::getAsInt);
 	}
 	
 	public Optional<Boolean[]> getBooleanArray(String key) {
-		return getArray(key, Boolean[]::new, json -> json.getAsBoolean());
+		return getArray(key, Boolean[]::new, JsonElement::getAsBoolean);
 	}
 	
 	public Optional<Float[]> getFloatArray(String key) {
-		return getArray(key, Float[]::new, json -> (float) json.getAsNumber());
+		return getArray(key, Float[]::new, JsonElement::getAsFloat);
 	}
 	
 	public <T> Optional<T> getCachedObject(String key, Class<T> c) {
