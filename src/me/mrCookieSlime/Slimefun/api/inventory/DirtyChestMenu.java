@@ -24,6 +24,10 @@ public class DirtyChestMenu extends ChestMenu {
 		return changes;
 	}
 	
+	public boolean isUniversal() {
+		return this instanceof UniversalBlockMenu;
+	}
+	
 	@Override
 	public ChestMenu addMenuOpeningHandler(MenuOpeningHandler handler) {
 		if (handler instanceof SaveHandler) {

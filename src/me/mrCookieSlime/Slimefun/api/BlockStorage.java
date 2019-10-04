@@ -35,6 +35,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.UniversalBlockMenu;
 
+@Deprecated
 public class BlockStorage {
 	
 	private static final String path_blocks = "data-storage/Slimefun/stored-blocks/";
@@ -46,11 +47,11 @@ public class BlockStorage {
 	private Map<String, Config> blocksCache = new HashMap<>();
 	
 	public static BlockStorage getStorage(World world) {
-		return SlimefunPlugin.getUtilities().worlds.get(world.getName());
+		return SlimefunPlugin.getUtilities().blockStorage.get(world.getName());
 	}
 	
 	public static BlockStorage getForcedStorage(World world) {
-		return isWorldRegistered(world.getName()) ? SlimefunPlugin.getUtilities().worlds.get(world.getName()): new BlockStorage(world);
+		return isWorldRegistered(world.getName()) ? SlimefunPlugin.getUtilities().blockStorage.get(world.getName()): new BlockStorage(world);
 	}
 	
 	private static String serializeLocation(Location l) {
@@ -79,7 +80,7 @@ public class BlockStorage {
 	}
 	
 	public BlockStorage(final World w) {
-		if (SlimefunPlugin.getUtilities().worlds.containsKey(w.getName())) return;
+		if (SlimefunPlugin.getUtilities().blockStorage.containsKey(w.getName())) return;
 		this.world = w;
 		
 		Slimefun.getLogger().log(Level.INFO, "Loading Blocks for World \"" + w.getName() + "\"");
@@ -167,7 +168,7 @@ public class BlockStorage {
 			}
 		}
 		
-		SlimefunPlugin.getUtilities().worlds.put(world.getName(), this);
+		SlimefunPlugin.getUtilities().blockStorage.put(world.getName(), this);
 		
 		for (File file: new File("data-storage/Slimefun/stored-inventories").listFiles()) {
 			if (file.getName().startsWith(w.getName()) && file.getName().endsWith(".sfi")) {
@@ -278,7 +279,7 @@ public class BlockStorage {
 			cfg.save(chunks);
 			
 			if (remove) {
-				SlimefunPlugin.getUtilities().worlds.remove(world.getName());
+				SlimefunPlugin.getUtilities().blockStorage.remove(world.getName());
 			}
 		}
 		
@@ -580,7 +581,7 @@ public class BlockStorage {
 	}
 
 	public static boolean isWorldRegistered(String name) {
-		return SlimefunPlugin.getUtilities().worlds.containsKey(name);
+		return SlimefunPlugin.getUtilities().blockStorage.containsKey(name);
 	}
 	
 	public static Set<String> getTickingChunks() {

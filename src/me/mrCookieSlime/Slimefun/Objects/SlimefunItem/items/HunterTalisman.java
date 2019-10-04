@@ -8,9 +8,9 @@ import org.bukkit.entity.ChestedHorse;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.Talisman;
 import me.mrCookieSlime.Slimefun.Objects.handlers.EntityKillHandler;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 public class HunterTalisman extends Talisman {
 

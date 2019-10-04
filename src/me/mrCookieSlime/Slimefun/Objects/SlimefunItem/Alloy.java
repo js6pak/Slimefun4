@@ -3,9 +3,10 @@ package me.mrCookieSlime.Slimefun.Objects.SlimefunItem;
 import me.mrCookieSlime.Slimefun.Lists.Categories;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 import org.bukkit.inventory.ItemStack;
+
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
 /**
  * Represents an alloy, a {@link SlimefunItem} obtainable using the {@code SMELTERY}.

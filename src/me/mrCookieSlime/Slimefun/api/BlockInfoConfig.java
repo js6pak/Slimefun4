@@ -10,6 +10,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 
+@Deprecated
 public class BlockInfoConfig extends Config {
 	
 	private Map<String, String> data;

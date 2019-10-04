@@ -3,12 +3,12 @@ package me.mrCookieSlime.Slimefun.Lists;
 import org.bukkit.Color;
 import org.bukkit.Material;
 
+import io.github.thebusybiscuit.slimefun4.implementation.utils.Christmas;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.Item.CustomArmor;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.Item.CustomItem;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.LockedCategory;
 import me.mrCookieSlime.Slimefun.Objects.SeasonalCategory;
-import me.mrCookieSlime.Slimefun.utils.Christmas;
 
 /**
  * Built-in categories.

@@ -16,6 +16,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.thebusybiscuit.cscorelib2.collections.OptionalMap;
+import io.github.thebusybiscuit.slimefun4.api.SlimefunWorld;
+import io.github.thebusybiscuit.slimefun4.implementation.hooks.github.Contributor;
+import io.github.thebusybiscuit.slimefun4.implementation.hooks.github.GitHubConnector;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.GEO.OreGenResource;
 import me.mrCookieSlime.Slimefun.Lists.Categories;
@@ -34,8 +38,6 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.UniversalBlockMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.CargoTransportEvent;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemRequest;
-import me.mrCookieSlime.Slimefun.hooks.github.Contributor;
-import me.mrCookieSlime.Slimefun.hooks.github.GitHubConnector;
 
 /**
  * Really dirty way to store stuff, but you can dump
@@ -46,6 +48,8 @@ import me.mrCookieSlime.Slimefun.hooks.github.GitHubConnector;
  *
  */
 public final class Utilities {
+	
+	public final OptionalMap<UUID, SlimefunWorld> worlds = new OptionalMap<>(HashMap::new);
 	
 	public int vanillaItems = 0;
 	
@@ -85,7 +89,7 @@ public final class Utilities {
 	
 	public final Map<String, ItemStack> automatedCraftingChamberRecipes = new HashMap<>();
 	
-	public final Map<String, BlockStorage> worlds = new HashMap<>();
+	public final Map<String, BlockStorage> blockStorage = new HashMap<>();
 	public final Set<String> loadedTickers = new HashSet<>();
 	
 	public final Map<String, String> mapChunks = new HashMap<>();

@@ -25,6 +25,8 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import io.github.thebusybiscuit.cscorelib2.chat.ChatInput;
 import io.github.thebusybiscuit.cscorelib2.math.DoubleHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.hooks.github.Contributor;
+import io.github.thebusybiscuit.slimefun4.implementation.hooks.github.IntegerFormat;
 import me.mrCookieSlime.CSCoreLibPlugin.PlayerRunnable;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Chat.TellRawMessage;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Chat.TellRawMessage.HoverAction;
@@ -46,8 +48,6 @@ import me.mrCookieSlime.Slimefun.api.GuideHandler;
 import me.mrCookieSlime.Slimefun.api.PlayerProfile;
 import me.mrCookieSlime.Slimefun.api.Slimefun;
 import me.mrCookieSlime.Slimefun.api.SlimefunGuideLayout;
-import me.mrCookieSlime.Slimefun.hooks.github.Contributor;
-import me.mrCookieSlime.Slimefun.hooks.github.IntegerFormat;
 
 public final class SlimefunGuide {
 	
