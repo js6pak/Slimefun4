@@ -143,7 +143,7 @@ public class SlimefunBlock {
 	public Optional<Boolean> getBoolean(String key) {
 		return getPrimitive(key, json -> json.getAsBoolean());
 	}
-	public Boolean getBoolean(String key, boolean defaultValue) {
+	public boolean getBoolean(String key, boolean defaultValue) {
 		return getBoolean(key).orElse(defaultValue);
 	}
 	
