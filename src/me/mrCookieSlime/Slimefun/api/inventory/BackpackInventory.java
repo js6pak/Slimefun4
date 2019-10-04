@@ -4,8 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+import io.github.thebusybiscuit.slimefun4.api.researches.PlayerProfile;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import me.mrCookieSlime.Slimefun.api.PlayerProfile;
 
 public class BackpackInventory {
 	

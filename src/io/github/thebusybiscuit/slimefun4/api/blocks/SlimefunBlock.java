@@ -59,6 +59,10 @@ public class SlimefunBlock {
 		return dirty;
 	}
 	
+	public String getID() {
+		return id;
+	}
+	
 	public BlockLocation getLocation() {
 		return location;
 	}

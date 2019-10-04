@@ -4,8 +4,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import io.github.thebusybiscuit.slimefun4.api.researches.PlayerProfile;
 import me.mrCookieSlime.Slimefun.SlimefunPlugin;
-import me.mrCookieSlime.Slimefun.api.PlayerProfile;
 
 public class PlayerQuitListener implements Listener {
 

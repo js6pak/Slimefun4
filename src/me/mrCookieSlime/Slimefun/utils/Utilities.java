@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.cscorelib2.collections.OptionalMap;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunWorld;
+import io.github.thebusybiscuit.slimefun4.api.researches.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.implementation.hooks.github.Contributor;
 import io.github.thebusybiscuit.slimefun4.implementation.hooks.github.GitHubConnector;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
@@ -33,7 +34,6 @@ import me.mrCookieSlime.Slimefun.Setup.PostSlimefunLoadingHandler;
 import me.mrCookieSlime.Slimefun.ancient_altar.AltarRecipe;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.GuideHandler;
-import me.mrCookieSlime.Slimefun.api.PlayerProfile;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.UniversalBlockMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.CargoTransportEvent;

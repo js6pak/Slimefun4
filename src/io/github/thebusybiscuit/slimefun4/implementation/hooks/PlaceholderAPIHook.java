@@ -5,10 +5,10 @@ import java.util.stream.Stream;
 
 import org.bukkit.OfflinePlayer;
 
+import io.github.thebusybiscuit.slimefun4.api.researches.PlayerProfile;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.mrCookieSlime.Slimefun.SlimefunPlugin;
 import me.mrCookieSlime.Slimefun.Objects.Research;
-import me.mrCookieSlime.Slimefun.api.PlayerProfile;
 import me.mrCookieSlime.Slimefun.api.Slimefun;
 
 public class PlaceholderAPIHook extends PlaceholderExpansion {

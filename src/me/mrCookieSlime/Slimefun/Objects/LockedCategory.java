@@ -4,11 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.PlayerProfile;
 import me.mrCookieSlime.Slimefun.api.Slimefun;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import io.github.thebusybiscuit.slimefun4.api.researches.PlayerProfile;
 
 /**
  * Represents a {@link Category} that cannot be opened until the parent category/categories
