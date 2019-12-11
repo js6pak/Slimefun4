@@ -1,6 +1,7 @@
 package me.mrCookieSlime.Slimefun.guides;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
@@ -21,9 +23,8 @@ import io.github.thebusybiscuit.cscorelib2.chat.ChatInput;
 import io.github.thebusybiscuit.cscorelib2.inventory.ItemUtils;
 import io.github.thebusybiscuit.cscorelib2.item.CustomItem;
 import io.github.thebusybiscuit.cscorelib2.recipes.MinecraftRecipe;
+import io.github.thebusybiscuit.cscorelib2.skull.SkullItem;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
-import me.mrCookieSlime.CSCoreLibPlugin.general.World.CustomSkull;
 import me.mrCookieSlime.Slimefun.SlimefunGuide;
 import me.mrCookieSlime.Slimefun.SlimefunPlugin;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -260,7 +261,7 @@ public class ChestSlimefunGuide implements ISlimefunGuide {
 					}
 					else {
 						List<String> message = sfitem.getNoPermissionTooltip();
-					    menu.addItem(index, new CustomItem(Material.BARRIER, StringUtils.formatItemName(sfitem.getItem(), false), message.toArray(new String[message.size()])));
+					    menu.addItem(index, new CustomItem(Material.BARRIER, sfitem.getItemName(), message.toArray(new String[message.size()])));
 						menu.addMenuClickHandler(index, (pl, slot, item, action) -> false);
 						index++;
 					}
@@ -312,22 +313,32 @@ public class ChestSlimefunGuide implements ISlimefunGuide {
 
 			if (index == 44) break;
 			
-			if (!itemName.isEmpty()) {
-				if (itemName.equals(searchTerm) || itemName.contains(searchTerm)) {
-					menu.addItem(index, item.getItem());
-					menu.addMenuClickHandler(index, (pl, slot, itm, action) -> {
-						if (!survival) {
-							pl.getInventory().addItem(item.getItem().clone());
-						}
-						else {
-							displayItem(profile, item, true);
-						}
+			if (!itemName.isEmpty() && (itemName.equals(searchTerm) || itemName.contains(searchTerm))) {
+				ItemStack itemstack = new CustomItem(item.getItem(), meta -> {
+					List<String> lore = null;
+					Category category = item.getCategory();
+					
+					if (category != null && category.getItem() != null && category.getItem().hasItemMeta() && category.getItem().getItemMeta().hasDisplayName()) {
+						lore = Arrays.asList("", ChatColor.DARK_GRAY + "\u21E8 " + ChatColor.RESET + item.getCategory().getItem().getItemMeta().getDisplayName());
+					}
+					
+					meta.setLore(lore);
+					meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_POTION_EFFECTS);
+				});
+				
+				menu.addItem(index, itemstack);
+				menu.addMenuClickHandler(index, (pl, slot, itm, action) -> {
+					if (!survival) {
+						pl.getInventory().addItem(item.getItem().clone());
+					}
+					else {
+						displayItem(profile, item, true);
+					}
 
-						return false;
-					});
+					return false;
+				});
 
-					index++;
-				}
+				index++;
 			}
 		}
 
@@ -424,13 +435,13 @@ public class ChestSlimefunGuide implements ISlimefunGuide {
 					return false;
 				});
 			} catch (Exception x) {
-				Slimefun.getLogger().log(Level.SEVERE, "An Error occured while adding a Wiki Page for Slimefun " + Slimefun.getVersion(), x);
+				Slimefun.getLogger().log(Level.SEVERE, "An Error occurred while adding a Wiki Page for Slimefun " + Slimefun.getVersion(), x);
 			}
 		}
 
 		if (Slimefun.getItemConfig().contains(item.getID() + ".youtube")) {
 			try {
-				menu.addItem(7, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjQzNTNmZDBmODYzMTQzNTM4NzY1ODYwNzViOWJkZjBjNDg0YWFiMDMzMWI4NzJkZjExYmQ1NjRmY2IwMjllZCJ9fX0="), "&rDemonstration Video &7(Youtube)", "", "&7\u21E8 Click to watch"));
+				menu.addItem(7, new CustomItem(SkullItem.fromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjQzNTNmZDBmODYzMTQzNTM4NzY1ODYwNzViOWJkZjBjNDg0YWFiMDMzMWI4NzJkZjExYmQ1NjRmY2IwMjllZCJ9fX0="), "&rDemonstration Video &7(Youtube)", "", "&7\u21E8 Click to watch"));
 				menu.addMenuClickHandler(7, (pl, slot, itemstack, action) -> {
 					pl.closeInventory();
 					pl.sendMessage("");
@@ -439,7 +450,7 @@ public class ChestSlimefunGuide implements ISlimefunGuide {
 					return false;
 				});
 			} catch (Exception x) {
-				Slimefun.getLogger().log(Level.SEVERE, "An Error occured while adding a Youtube Video for Slimefun " + Slimefun.getVersion(), x);
+				Slimefun.getLogger().log(Level.SEVERE, "An Error occurred while adding a Youtube Video for Slimefun " + Slimefun.getVersion(), x);
 			}
 		}
 		
@@ -529,14 +540,14 @@ public class ChestSlimefunGuide implements ISlimefunGuide {
 			menu.addMenuClickHandler(i, (pl, s, itemstack, action) -> false);
 		}
 
-		/*
 		// Settings Panel
-		menu.addItem(1, new CustomItem(Material.ENCHANTED_BOOK, "&eSettings / Info", "", "&7\u21E8 Click to see more"));
+		menu.addItem(1, new CustomItem(SlimefunGuide.getItem(SlimefunGuideLayout.CHEST), "&eSettings / Info", "", "&7\u21E8 Click to see more"));
 		menu.addMenuClickHandler(1, (player, i, itemStack, clickAction) -> {
-			SlimefunGuide.openSettings(player, getItem());
+			GuideSettings.openSettings(player, player.getInventory().getItemInMainHand());
 			return false;
 		});
 
+		/*
 		// Stats
 		menu.addItem(4, new CustomItem(SkullItem.fromPlayer(p), "&7Player Stats: &e" + p.getName(), "", "&7Progress: &a" + Math.round(((profile.getResearches().size() * 100.0F) / Research.list().size()) * 100.0F) / 100.0F + "% &e(" + profile.getResearches().size() + " / " + Research.list().size() + ")", "", "&7\u21E8 Click for a full summary"));
 		menu.addMenuClickHandler(4, (player, i, itemStack, clickAction) -> {
@@ -570,7 +581,7 @@ public class ChestSlimefunGuide implements ISlimefunGuide {
 		
 		if (playerHistory.size() > 1) {
 
-			menu.addItem(slot, new CustomItem(new ItemStack(Material.ENCHANTED_BOOK),
+			menu.addItem(slot, new CustomItem(SlimefunGuide.getItem(SlimefunGuideLayout.CHEST),
 				"&7\u21E6 Back", "",
 				"&rLeft Click: &7Go back to previous Page",
 				"&rShift + left Click: &7Go back to Main Menu")
@@ -652,14 +663,14 @@ public class ChestSlimefunGuide implements ISlimefunGuide {
 
 				if ((i + (page * 18)) < recipes.size()) {
 					if (page == 0) {
-						menu.replaceExistingItem(slot, recipes.get(i + (page * 18)));
+						menu.replaceExistingItem(slot, recipes.get(i + (page * 18)).clone());
 						menu.addMenuClickHandler(slot, (pl, s, itemstack, action) -> {
 							displayItem(profile, itemstack, true);
 							return false;
 						});
 					}
 					else {
-						menu.replaceExistingItem(slot, recipes.get(i + (page * 18)));
+						menu.replaceExistingItem(slot, recipes.get(i + (page * 18)).clone());
 					}
 				}
 				else {

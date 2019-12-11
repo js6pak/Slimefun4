@@ -1,4 +1,4 @@
-package me.mrCookieSlime.Slimefun.hooks.github;
+package io.github.thebusybiscuit.slimefun4.core.services.github;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,7 +30,10 @@ public abstract class GitHubConnector {
 	public abstract String getRepository();
 	public abstract String getURLSuffix();
 	public abstract void onSuccess(JsonElement element);
-	public abstract void onFailure();
+	
+	public void onFailure() {
+		// Don't do anything by default
+	}
 
 	public void pullFile() {
 		if (SlimefunPlugin.getCfg().getBoolean("options.print-out-github-data-retrieving")) {
